@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME: MAHALAKSHMI R </H3>
+<H3>ENTER YOUR REGISTER NO.: 212223230116 </H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>DATE: 7/3/2025 </H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,46 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
-
-
+```
+import pandas as pd                                                 # Importing Libraries
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
+df.head()
+```
+```
+df.isnull().sum()
+```                                                 # Finding Missing Values
+df.duplicated().sum()
+```                                            # Check For Duplicates
+df=df.drop(['Surname', 'Geography','Gender'], axis=1)               # Remove Unnecessary Columns
+scaler=StandardScaler()                                             # Normalize the dataset
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+```
+X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values                     # Split the dataset into input and output
+print('Input:\n',X,'\nOutput:\n',Y) 
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)   # Splitting the data for training & Testing
+print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)                     # X Train and Test
+print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)            
+```
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+DATASET:
+![Screenshot 2025-03-07 154343](https://github.com/user-attachments/assets/f3ca55e7-c02a-4b04-bde0-1368bf9a0111)
+
+NULL VALUES:
+![Screenshot 2025-03-07 154351](https://github.com/user-attachments/assets/49394e4a-3909-44bf-bd0f-39976f0bb513)
+
+NORMALIZED DATA:
+![Screenshot 2025-03-07 154413](https://github.com/user-attachments/assets/ca5b8aef-d723-4c76-9a5a-471373317af0)
+
+DATA SPLITTING:
+![Screenshot 2025-03-07 154451](https://github.com/user-attachments/assets/9e91237c-44e0-427c-bed7-c0ef52be47d7)
+
+TRAIN AND TEST DATA:
+![Screenshot 2025-03-07 154512](https://github.com/user-attachments/assets/652a02e1-6c85-4ee7-8147-7f2df263c018)
 
 
 ## RESULT:
