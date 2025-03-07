@@ -46,15 +46,22 @@ from sklearn.model_selection import train_test_split
 df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
 df.head()
 ```
+
 ```
-df.isnull().sum()
-```                                                 # Finding Missing Values
-df.duplicated().sum()
-```                                            # Check For Duplicates
+df.isnull().sum()                                    # Finding Missing Values
+```
+
+```                                        
+df.duplicated().sum()                                 # Check For Duplicates
+```
+
+```                                        
 df=df.drop(['Surname', 'Geography','Gender'], axis=1)               # Remove Unnecessary Columns
 scaler=StandardScaler()                                             # Normalize the dataset
 df=pd.DataFrame(scaler.fit_transform(df))
 df.head()
+```
+
 ```
 X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values                     # Split the dataset into input and output
 print('Input:\n',X,'\nOutput:\n',Y) 
@@ -62,6 +69,7 @@ Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)   # Splitting 
 print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)                     # X Train and Test
 print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)            
 ```
+
 ## OUTPUT:
 DATASET:
 ![Screenshot 2025-03-07 154343](https://github.com/user-attachments/assets/f3ca55e7-c02a-4b04-bde0-1368bf9a0111)
